@@ -25,10 +25,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['contact_form'])) {
     $country_code = htmlspecialchars(trim($_POST['country_code']));
     $phone = htmlspecialchars(trim($_POST['phone']));
     $message = htmlspecialchars(trim($_POST['message']));
-    
+
     if (!empty($name) && !empty($email) && !empty($message) && filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $mail = new PHPMailer(true);
-        
+
         try {
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com';
@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['contact_form'])) {
             $mail->setFrom('kritarthranjan2@gmail.com', 'Portfolio Contact Form');
             $mail->addAddress('kritarthranjan5053@gmail.com');   // Reciver
             $mail->addReplyTo($email, $name);
-            
+
             $mail->isHTML(true);
             $mail->Subject = "New Contact from Portfolio: $name";
             $mail->Body = "
@@ -54,11 +54,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['contact_form'])) {
                 <p>$message</p>
             ";
             $mail->AltBody = "Name: $name\nEmail: $email\nPhone: $country_code $phone\nMessage:\n$message";
-            
+
             if ($mail->send()) {
                 $_SESSION['form_success'] = true;
                 $_SESSION['form_success_time'] = time();
-                header("Location: ".$_SERVER['PHP_SELF']."#contact");
+                header("Location: " . $_SERVER['PHP_SELF'] . "#contact");
                 exit();
             } else {
                 error_log("Mailer Error: " . $mail->ErrorInfo);
@@ -80,6 +80,7 @@ $age = $today->diff($dob)->y;
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -93,7 +94,7 @@ $age = $today->diff($dob)->y;
         document.addEventListener('DOMContentLoaded', function() {
             const successMessage = document.querySelector('.form-success');
             const contactForm = document.querySelector('.contact-form form');
-            
+
             if (successMessage && successMessage.style.display === 'block') {
                 setTimeout(function() {
                     successMessage.style.display = 'none';
@@ -103,6 +104,7 @@ $age = $today->diff($dob)->y;
         });
     </script>
 </head>
+
 <body>
     <!-- Added Header Section -->
     <header class="header" id="header">
@@ -122,7 +124,7 @@ $age = $today->diff($dob)->y;
                             <i class="uil uil-user nav__icon"></i> About
                         </a>
                     </li>
-                    
+
                     <li class="nav__item">
                         <a href="#experience" class="nav__link">
                             <i class="uil uil-briefcase-alt nav__icon"></i> Experience
@@ -154,7 +156,7 @@ $age = $today->diff($dob)->y;
                     </li>
 
                 </ul>
-                
+
                 <i class="uil uil-times nav__close" id="nav-close"></i>
             </div>
 
@@ -195,7 +197,7 @@ $age = $today->diff($dob)->y;
             <div class="about-content">
                 <div class="about-text">
                     <p>I'm a passionate Machine Learning Engineer and Data Scientist with expertise in developing end-to-end AI solutions. My journey in AI/ML began during my college years, and I've since worked on diverse projects ranging from computer vision to predictive analytics.</p>
-                    
+
                     <p>Currently leading the ML team at BrainSightAI, I specialize in building scalable machine learning systems and deploying models in production environments. I'm particularly interested in the intersection of neuroscience and artificial intelligence.</p>
                 </div>
             </div>
@@ -209,347 +211,349 @@ $age = $today->diff($dob)->y;
             <div class="skills-grid container">
                 <!-- Row 1 -->
                 <div class="skills-row">
-                    <!-- Data Science & AI -->
-                    <div class="skills-content skills-close">
-                        <div class="skills-header">
-                            <i class="uil uil-brain skills-icon"></i>
-                            <div>
-                                <h1 class="skills-title">Data Science & AI</h1>
-                                <span class="skills-subtitle">4+ Years XP</span>
+                    <!-- Col 1 -->
+                    <div class="skills-col">
+                        <!-- Data Science & AI -->
+                        <div class="skills-content skills-close">
+                            <div class="skills-header">
+                                <i class="uil uil-brain skills-icon"></i>
+                                <div>
+                                    <h1 class="skills-title">Data Science & AI</h1>
+                                    <span class="skills-subtitle">4+ Years XP</span>
+                                </div>
+                                <i class="uil uil-angle-down skills-arrow"></i>
                             </div>
-                            <i class="uil uil-angle-down skills-arrow"></i>
+                            <div class="skills-list grid">
+                                <div class="skills-data">
+                                    <div class="skills-titles">
+                                        <h3 class="skills-name">Computer Vision</h3>
+                                        <span class="skills-number">95%</span>
+                                    </div>
+                                    <div class="skills-bar">
+                                        <span class="skills-percentage skills-cv"></span>
+                                    </div>
+                                </div>
+                                <div class="skills-data">
+                                    <div class="skills-titles">
+                                        <h3 class="skills-name">Generative AI</h3>
+                                        <span class="skills-number">95%</span>
+                                    </div>
+                                    <div class="skills-bar">
+                                        <span class="skills-percentage skills-genai"></span>
+                                    </div>
+                                </div>
+                                <div class="skills-data">
+                                    <div class="skills-titles">
+                                        <h3 class="skills-name">Natural Language Processing</h3>
+                                        <span class="skills-number">95%</span>
+                                    </div>
+                                    <div class="skills-bar">
+                                        <span class="skills-percentage skills-nlp"></span>
+                                    </div>
+                                </div>
+                                <div class="skills-data">
+                                    <div class="skills-titles">
+                                        <h3 class="skills-name">Signal Processing</h3>
+                                        <span class="skills-number">90%</span>
+                                    </div>
+                                    <div class="skills-bar">
+                                        <span class="skills-percentage skills-sp"></span>
+                                    </div>
+                                </div>
+                                <div class="skills-data">
+                                    <div class="skills-titles">
+                                        <h3 class="skills-name">Probability & Statistics</h3>
+                                        <span class="skills-number">90%</span>
+                                    </div>
+                                    <div class="skills-bar">
+                                        <span class="skills-percentage skills-ps"></span>
+                                    </div>
+                                </div>
+                                <div class="skills-data">
+                                    <div class="skills-titles">
+                                        <h3 class="skills-name">Data Analytics & Visualization</h3>
+                                        <span class="skills-number">85%</span>
+                                    </div>
+                                    <div class="skills-bar">
+                                        <span class="skills-percentage skills-dav"></span>
+                                    </div>
+                                </div>
+                                <div class="skills-data">
+                                    <div class="skills-titles">
+                                        <h3 class="skills-name">Frameworks & Libraries</h3>
+                                        <span class="skills-number">90%</span>
+                                    </div>
+                                    <div class="skills-bar">
+                                        <span class="skills-percentage skills-frameworks"></span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="skills-list grid">
-                            <div class="skills-data">
-                                <div class="skills-titles">
-                                    <h3 class="skills-name">Computer Vision</h3>
-                                    <span class="skills-number">95%</span>
+
+                        <!-- Programming -->
+                        <div class="skills-content skills-close">
+                            <div class="skills-header">
+                                <i class="uil uil-brackets-curly skills-icon"></i>
+                                <div>
+                                    <h1 class="skills-title">Programming</h1>
+                                    <span class="skills-subtitle">3+ Years XP</span>
                                 </div>
-                                <div class="skills-bar">
-                                    <span class="skills-percentage skills-cv"></span>
+                                <i class="uil uil-angle-down skills-arrow"></i>
+                            </div>
+                            <div class="skills-list grid">
+                                <div class="skills-data">
+                                    <div class="skills-titles">
+                                        <h3 class="skills-name">Python</h3>
+                                        <span class="skills-number">95%</span>
+                                    </div>
+                                    <div class="skills-bar">
+                                        <span class="skills-percentage skills-python"></span>
+                                    </div>
+                                </div>
+                                <div class="skills-data">
+                                    <div class="skills-titles">
+                                        <h3 class="skills-name">SQL</h3>
+                                        <span class="skills-number">95%</span>
+                                    </div>
+                                    <div class="skills-bar">
+                                        <span class="skills-percentage skills-sql"></span>
+                                    </div>
+                                </div>
+                                <div class="skills-data">
+                                    <div class="skills-titles">
+                                        <h3 class="skills-name">C++/C</h3>
+                                        <span class="skills-number">90%</span>
+                                    </div>
+                                    <div class="skills-bar">
+                                        <span class="skills-percentage skills-cpp"></span>
+                                    </div>
+                                </div>
+                                <div class="skills-data">
+                                    <div class="skills-titles">
+                                        <h3 class="skills-name">Java</h3>
+                                        <span class="skills-number">90%</span>
+                                    </div>
+                                    <div class="skills-bar">
+                                        <span class="skills-percentage skills-java"></span>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="skills-data">
-                                <div class="skills-titles">
-                                    <h3 class="skills-name">Generative AI</h3>
-                                    <span class="skills-number">95%</span>
+                        </div>
+
+                        <!-- Computing -->
+                        <div class="skills-content skills-close">
+                            <div class="skills-header">
+                                <i class="uil uil-cloud-computing skills-icon"></i>
+                                <div>
+                                    <h1 class="skills-title">Computing</h1>
+                                    <span class="skills-subtitle">1+ Year XP</span>
                                 </div>
-                                <div class="skills-bar">
-                                    <span class="skills-percentage skills-genai"></span>
+                                <i class="uil uil-angle-down skills-arrow"></i>
+                            </div>
+                            <div class="skills-list grid">
+                                <div class="skills-data">
+                                    <div class="skills-titles">
+                                        <h3 class="skills-name">GPU & Distributed Computing</h3>
+                                        <span class="skills-number">90%</span>
+                                    </div>
+                                    <div class="skills-bar">
+                                        <span class="skills-percentage skills-gpu"></span>
+                                    </div>
+                                </div>
+                                <div class="skills-data">
+                                    <div class="skills-titles">
+                                        <h3 class="skills-name">Amazon Web Services</h3>
+                                        <span class="skills-number">85%</span>
+                                    </div>
+                                    <div class="skills-bar">
+                                        <span class="skills-percentage skills-aws"></span>
+                                    </div>
+                                </div>
+                                <div class="skills-data">
+                                    <div class="skills-titles">
+                                        <h3 class="skills-name">Google Cloud Platform</h3>
+                                        <span class="skills-number">85%</span>
+                                    </div>
+                                    <div class="skills-bar">
+                                        <span class="skills-percentage skills-gcp"></span>
+                                    </div>
+                                </div>
+                                <div class="skills-data">
+                                    <div class="skills-titles">
+                                        <h3 class="skills-name">Microsoft Azure</h3>
+                                        <span class="skills-number">85%</span>
+                                    </div>
+                                    <div class="skills-bar">
+                                        <span class="skills-percentage skills-azure"></span>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="skills-data">
-                                <div class="skills-titles">
-                                    <h3 class="skills-name">Natural Language Processing</h3>
-                                    <span class="skills-number">95%</span>
+                        </div>
+                    </div>
+                    <!-- Col 2 -->
+                    <div class="skills-col">
+                        <!-- Front End -->
+                        <div class="skills-content skills-close">
+                            <div class="skills-header">
+                                <i class="uil uil-swatchbook skills-icon"></i>
+                                <div>
+                                    <h1 class="skills-title">Front End</h1>
+                                    <span class="skills-subtitle">2+ Years XP</span>
                                 </div>
-                                <div class="skills-bar">
-                                    <span class="skills-percentage skills-nlp"></span>
+                                <i class="uil uil-angle-down skills-arrow"></i>
+                            </div>
+                            <div class="skills-list grid">
+                                <div class="skills-data">
+                                    <div class="skills-titles">
+                                        <h3 class="skills-name">HTML</h3>
+                                        <span class="skills-number">90%</span>
+                                    </div>
+                                    <div class="skills-bar">
+                                        <span class="skills-percentage skills-html"></span>
+                                    </div>
+                                </div>
+                                <div class="skills-data">
+                                    <div class="skills-titles">
+                                        <h3 class="skills-name">CSS</h3>
+                                        <span class="skills-number">85%</span>
+                                    </div>
+                                    <div class="skills-bar">
+                                        <span class="skills-percentage skills-css"></span>
+                                    </div>
+                                </div>
+                                <div class="skills-data">
+                                    <div class="skills-titles">
+                                        <h3 class="skills-name">JavaScript</h3>
+                                        <span class="skills-number">75%</span>
+                                    </div>
+                                    <div class="skills-bar">
+                                        <span class="skills-percentage skills-js"></span>
+                                    </div>
+                                </div>
+                                <div class="skills-data">
+                                    <div class="skills-titles">
+                                        <h3 class="skills-name">React JS</h3>
+                                        <span class="skills-number">85%</span>
+                                    </div>
+                                    <div class="skills-bar">
+                                        <span class="skills-percentage skills-react"></span>
+                                    </div>
+                                </div>
+                                <div class="skills-data">
+                                    <div class="skills-titles">
+                                        <h3 class="skills-name">React Native</h3>
+                                        <span class="skills-number">85%</span>
+                                    </div>
+                                    <div class="skills-bar">
+                                        <span class="skills-percentage skills-react-native"></span>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="skills-data">
-                                <div class="skills-titles">
-                                    <h3 class="skills-name">Signal Processing</h3>
-                                    <span class="skills-number">90%</span>
+                        </div>
+
+                        <!-- BackEnd -->
+                        <div class="skills-content skills-close">
+                            <div class="skills-header">
+                                <i class="uil uil-server-network skills-icon"></i>
+                                <div>
+                                    <h1 class="skills-title">BackEnd</h1>
+                                    <span class="skills-subtitle">2+ Years XP</span>
                                 </div>
-                                <div class="skills-bar">
-                                    <span class="skills-percentage skills-sp"></span>
+                                <i class="uil uil-angle-down skills-arrow"></i>
+                            </div>
+                            <div class="skills-list grid">
+                                <div class="skills-data">
+                                    <div class="skills-titles">
+                                        <h3 class="skills-name">Python - Flask, Fast API</h3>
+                                        <span class="skills-number">95%</span>
+                                    </div>
+                                    <div class="skills-bar">
+                                        <span class="skills-percentage skills-python-backend"></span>
+                                    </div>
+                                </div>
+                                <div class="skills-data">
+                                    <div class="skills-titles">
+                                        <h3 class="skills-name">Firebase</h3>
+                                        <span class="skills-number">75%</span>
+                                    </div>
+                                    <div class="skills-bar">
+                                        <span class="skills-percentage skills-firebase"></span>
+                                    </div>
+                                </div>
+                                <div class="skills-data">
+                                    <div class="skills-titles">
+                                        <h3 class="skills-name">Java - Spring Framework</h3>
+                                        <span class="skills-number">75%</span>
+                                    </div>
+                                    <div class="skills-bar">
+                                        <span class="skills-percentage skills-spring"></span>
+                                    </div>
+                                </div>
+                                <div class="skills-data">
+                                    <div class="skills-titles">
+                                        <h3 class="skills-name">Node JS, Express JS</h3>
+                                        <span class="skills-number">70%</span>
+                                    </div>
+                                    <div class="skills-bar">
+                                        <span class="skills-percentage skills-node"></span>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="skills-data">
-                                <div class="skills-titles">
-                                    <h3 class="skills-name">Probability & Statistics</h3>
-                                    <span class="skills-number">90%</span>
+                        </div>
+
+                        <!-- Misc -->
+                        <div class="skills-content skills-close">
+                            <div class="skills-header">
+                                <i class="uil uil-analysis skills-icon"></i>
+                                <div>
+                                    <h1 class="skills-title">Misc</h1>
+                                    <span class="skills-subtitle">2+ Years XP</span>
                                 </div>
-                                <div class="skills-bar">
-                                    <span class="skills-percentage skills-ps"></span>
-                                </div>
+                                <i class="uil uil-angle-down skills-arrow"></i>
                             </div>
-                            <div class="skills-data">
-                                <div class="skills-titles">
-                                    <h3 class="skills-name">Data Analytics & Visualization</h3>
-                                    <span class="skills-number">85%</span>
+                            <div class="skills-list grid">
+                                <div class="skills-data">
+                                    <div class="skills-titles">
+                                        <h3 class="skills-name">Git</h3>
+                                        <span class="skills-number">90%</span>
+                                    </div>
+                                    <div class="skills-bar">
+                                        <span class="skills-percentage skills-git"></span>
+                                    </div>
                                 </div>
-                                <div class="skills-bar">
-                                    <span class="skills-percentage skills-dav"></span>
+                                <div class="skills-data">
+                                    <div class="skills-titles">
+                                        <h3 class="skills-name">Linux</h3>
+                                        <span class="skills-number">90%</span>
+                                    </div>
+                                    <div class="skills-bar">
+                                        <span class="skills-percentage skills-linux"></span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="skills-data">
-                                <div class="skills-titles">
-                                    <h3 class="skills-name">Frameworks & Libraries</h3>
-                                    <span class="skills-number">90%</span>
+                                <div class="skills-data">
+                                    <div class="skills-titles">
+                                        <h3 class="skills-name">Docker</h3>
+                                        <span class="skills-number">80%</span>
+                                    </div>
+                                    <div class="skills-bar">
+                                        <span class="skills-percentage skills-docker"></span>
+                                    </div>
                                 </div>
-                                <div class="skills-bar">
-                                    <span class="skills-percentage skills-frameworks"></span>
+                                <div class="skills-data">
+                                    <div class="skills-titles">
+                                        <h3 class="skills-name">Kubernetes</h3>
+                                        <span class="skills-number">75%</span>
+                                    </div>
+                                    <div class="skills-bar">
+                                        <span class="skills-percentage skills-kubernetes"></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Front End -->
-                    <div class="skills-content skills-close">
-                        <div class="skills-header">
-                            <i class="uil uil-swatchbook skills-icon"></i>
-                            <div>
-                                <h1 class="skills-title">Front End</h1>
-                                <span class="skills-subtitle">2+ Years XP</span>
-                            </div>
-                            <i class="uil uil-angle-down skills-arrow"></i>
-                        </div>
-                        <div class="skills-list grid">
-                            <div class="skills-data">
-                                <div class="skills-titles">
-                                    <h3 class="skills-name">HTML</h3>
-                                    <span class="skills-number">90%</span>
-                                </div>
-                                <div class="skills-bar">
-                                    <span class="skills-percentage skills-html"></span>
-                                </div>
-                            </div>
-                            <div class="skills-data">
-                                <div class="skills-titles">
-                                    <h3 class="skills-name">CSS</h3>
-                                    <span class="skills-number">85%</span>
-                                </div>
-                                <div class="skills-bar">
-                                    <span class="skills-percentage skills-css"></span>
-                                </div>
-                            </div>
-                            <div class="skills-data">
-                                <div class="skills-titles">
-                                    <h3 class="skills-name">JavaScript</h3>
-                                    <span class="skills-number">75%</span>
-                                </div>
-                                <div class="skills-bar">
-                                    <span class="skills-percentage skills-js"></span>
-                                </div>
-                            </div>
-                            <div class="skills-data">
-                                <div class="skills-titles">
-                                    <h3 class="skills-name">React JS</h3>
-                                    <span class="skills-number">85%</span>
-                                </div>
-                                <div class="skills-bar">
-                                    <span class="skills-percentage skills-react"></span>
-                                </div>
-                            </div>
-                            <div class="skills-data">
-                                <div class="skills-titles">
-                                    <h3 class="skills-name">React Native</h3>
-                                    <span class="skills-number">85%</span>
-                                </div>
-                                <div class="skills-bar">
-                                    <span class="skills-percentage skills-react-native"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Row 2 -->
-                <div class="skills-row">
-                    <!-- Programming -->
-                    <div class="skills-content skills-close">
-                        <div class="skills-header">
-                            <i class="uil uil-brackets-curly skills-icon"></i>
-                            <div>
-                                <h1 class="skills-title">Programming</h1>
-                                <span class="skills-subtitle">3+ Years XP</span>
-                            </div>
-                            <i class="uil uil-angle-down skills-arrow"></i>
-                        </div>
-                        <div class="skills-list grid">
-                            <div class="skills-data">
-                                <div class="skills-titles">
-                                    <h3 class="skills-name">Python</h3>
-                                    <span class="skills-number">95%</span>
-                                </div>
-                                <div class="skills-bar">
-                                    <span class="skills-percentage skills-python"></span>
-                                </div>
-                            </div>
-                            <div class="skills-data">
-                                <div class="skills-titles">
-                                    <h3 class="skills-name">SQL</h3>
-                                    <span class="skills-number">95%</span>
-                                </div>
-                                <div class="skills-bar">
-                                    <span class="skills-percentage skills-sql"></span>
-                                </div>
-                            </div>
-                            <div class="skills-data">
-                                <div class="skills-titles">
-                                    <h3 class="skills-name">C++/C</h3>
-                                    <span class="skills-number">90%</span>
-                                </div>
-                                <div class="skills-bar">
-                                    <span class="skills-percentage skills-cpp"></span>
-                                </div>
-                            </div>
-                            <div class="skills-data">
-                                <div class="skills-titles">
-                                    <h3 class="skills-name">Java</h3>
-                                    <span class="skills-number">90%</span>
-                                </div>
-                                <div class="skills-bar">
-                                    <span class="skills-percentage skills-java"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- BackEnd -->
-                    <div class="skills-content skills-close">
-                        <div class="skills-header">
-                            <i class="uil uil-server-network skills-icon"></i>
-                            <div>
-                                <h1 class="skills-title">BackEnd</h1>
-                                <span class="skills-subtitle">2+ Years XP</span>
-                            </div>
-                            <i class="uil uil-angle-down skills-arrow"></i>
-                        </div>
-                        <div class="skills-list grid">
-                            <div class="skills-data">
-                                <div class="skills-titles">
-                                    <h3 class="skills-name">Python - Flask, Fast API</h3>
-                                    <span class="skills-number">95%</span>
-                                </div>
-                                <div class="skills-bar">
-                                    <span class="skills-percentage skills-python-backend"></span>
-                                </div>
-                            </div>
-                            <div class="skills-data">
-                                <div class="skills-titles">
-                                    <h3 class="skills-name">Firebase</h3>
-                                    <span class="skills-number">75%</span>
-                                </div>
-                                <div class="skills-bar">
-                                    <span class="skills-percentage skills-firebase"></span>
-                                </div>
-                            </div>
-                            <div class="skills-data">
-                                <div class="skills-titles">
-                                    <h3 class="skills-name">Java - Spring Framework</h3>
-                                    <span class="skills-number">75%</span>
-                                </div>
-                                <div class="skills-bar">
-                                    <span class="skills-percentage skills-spring"></span>
-                                </div>
-                            </div>
-                            <div class="skills-data">
-                                <div class="skills-titles">
-                                    <h3 class="skills-name">Node JS, Express JS</h3>
-                                    <span class="skills-number">70%</span>
-                                </div>
-                                <div class="skills-bar">
-                                    <span class="skills-percentage skills-node"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Row 3 -->
-                <div class="skills-row">
-                    <!-- Computing -->
-                    <div class="skills-content skills-close">
-                        <div class="skills-header">
-                            <i class="uil uil-cloud-computing skills-icon"></i>
-                            <div>
-                                <h1 class="skills-title">Computing</h1>
-                                <span class="skills-subtitle">1+ Year XP</span>
-                            </div>
-                            <i class="uil uil-angle-down skills-arrow"></i>
-                        </div>
-                        <div class="skills-list grid">
-                            <div class="skills-data">
-                                <div class="skills-titles">
-                                    <h3 class="skills-name">GPU & Distributed Computing</h3>
-                                    <span class="skills-number">90%</span>
-                                </div>
-                                <div class="skills-bar">
-                                    <span class="skills-percentage skills-gpu"></span>
-                                </div>
-                            </div>
-                            <div class="skills-data">
-                                <div class="skills-titles">
-                                    <h3 class="skills-name">Amazon Web Services</h3>
-                                    <span class="skills-number">85%</span>
-                                </div>
-                                <div class="skills-bar">
-                                    <span class="skills-percentage skills-aws"></span>
-                                </div>
-                            </div>
-                            <div class="skills-data">
-                                <div class="skills-titles">
-                                    <h3 class="skills-name">Google Cloud Platform</h3>
-                                    <span class="skills-number">85%</span>
-                                </div>
-                                <div class="skills-bar">
-                                    <span class="skills-percentage skills-gcp"></span>
-                                </div>
-                            </div>
-                            <div class="skills-data">
-                                <div class="skills-titles">
-                                    <h3 class="skills-name">Microsoft Azure</h3>
-                                    <span class="skills-number">85%</span>
-                                </div>
-                                <div class="skills-bar">
-                                    <span class="skills-percentage skills-azure"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Misc -->
-                    <div class="skills-content skills-close">
-                        <div class="skills-header">
-                            <i class="uil uil-analysis skills-icon"></i>
-                            <div>
-                                <h1 class="skills-title">Misc</h1>
-                                <span class="skills-subtitle">2+ Years XP</span>
-                            </div>
-                            <i class="uil uil-angle-down skills-arrow"></i>
-                        </div>
-                        <div class="skills-list grid">
-                            <div class="skills-data">
-                                <div class="skills-titles">
-                                    <h3 class="skills-name">Git</h3>
-                                    <span class="skills-number">90%</span>
-                                </div>
-                                <div class="skills-bar">
-                                    <span class="skills-percentage skills-git"></span>
-                                </div>
-                            </div>
-                            <div class="skills-data">
-                                <div class="skills-titles">
-                                    <h3 class="skills-name">Linux</h3>
-                                    <span class="skills-number">90%</span>
-                                </div>
-                                <div class="skills-bar">
-                                    <span class="skills-percentage skills-linux"></span>
-                                </div>
-                            </div>
-                            <div class="skills-data">
-                                <div class="skills-titles">
-                                    <h3 class="skills-name">Docker</h3>
-                                    <span class="skills-number">80%</span>
-                                </div>
-                                <div class="skills-bar">
-                                    <span class="skills-percentage skills-docker"></span>
-                                </div>
-                            </div>
-                            <div class="skills-data">
-                                <div class="skills-titles">
-                                    <h3 class="skills-name">Kubernetes</h3>
-                                    <span class="skills-number">75%</span>
-                                </div>
-                                <div class="skills-bar">
-                                    <span class="skills-percentage skills-kubernetes"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
@@ -563,7 +567,7 @@ $age = $today->diff($dob)->y;
                 <button class="research-scroll-btn left" aria-label="Scroll left">
                     <i class="fas fa-angle-left"></i>
                 </button>
-                
+
                 <div class="research-container">
                     <!-- Paper 1 -->
                     <div class="research-card">
@@ -645,7 +649,7 @@ $age = $today->diff($dob)->y;
                         </div>
                     </div>
                 </div>
-                
+
                 <button class="research-scroll-btn right" aria-label="Scroll right">
                     <i class="fas fa-angle-right"></i>
                 </button>
@@ -687,15 +691,15 @@ $age = $today->diff($dob)->y;
                                 <span class="qualification-line"></span>
                             </div>
                         </div>
-                        
-                        <div class="qualification-data">                                 
+
+                        <div class="qualification-data">
                             <div></div>
 
                             <div>
                                 <span class="qualification-rounder"></span>
                                 <span class="qualification-line"></span>
                             </div>
-                    
+
                             <div>
                                 <h3 class="qualification-title">Class XII</h3>
                                 <span class="qualification-subtitle">Maths, Physics, Chemistry, Computer Science | SDAV Higher Secondary School, India</span>
@@ -738,7 +742,7 @@ $age = $today->diff($dob)->y;
                                 <span class="qualification-line"></span>
                             </div>
                         </div>
-                        
+
                         <div class="qualification-data">
                             <div></div>
 
@@ -881,7 +885,7 @@ $age = $today->diff($dob)->y;
                             <a href="#" class="project-link">View Project →</a>
                         </div>
                     </div>
-                    
+
                     <!-- Project 2 -->
                     <div class="project-card">
                         <div class="project-image">
@@ -893,7 +897,7 @@ $age = $today->diff($dob)->y;
                             <a href="#" class="project-link">View Project →</a>
                         </div>
                     </div>
-                    
+
                     <!-- Project 3 -->
                     <div class="project-card">
                         <div class="project-image">
@@ -905,7 +909,7 @@ $age = $today->diff($dob)->y;
                             <a href="#" class="project-link">View Project →</a>
                         </div>
                     </div>
-                    
+
                     <!-- Project 4 -->
                     <div class="project-card">
                         <div class="project-image">
@@ -945,7 +949,7 @@ $age = $today->diff($dob)->y;
                     <p><i class="fas fa-envelope"></i>kritarthranjan5053@gmail.com</p>
                     <p><i class="fas fa-phone"></i>+91 9559807374</p>
                     <p><i class="fas fa-map-marker-alt"></i> New Delhi, India</p>
-                    
+
                     <div class="social-links">
                         <a href="#" class="social-link" aria-label="X"><i class="fa-brands fa-x"></i> <!-- Alternative class name --></a>
                         <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
@@ -954,7 +958,7 @@ $age = $today->diff($dob)->y;
                         <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
-                
+
                 <!-- In your contact section -->
                 <div class="contact-form">
                     <?php if ($messageSent && !$formDisabled): ?>
@@ -962,7 +966,7 @@ $age = $today->diff($dob)->y;
                             <p>Thank you for your message! I'll get back to you soon.</p>
                         </div>
                     <?php endif; ?>
-                    
+
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>#contact" method="POST" style="<?php echo $formDisabled ? 'display:none;' : 'display:block;' ?>">
                         <input type="hidden" name="contact_form" value="1">
                         <div class="form-group">
@@ -980,7 +984,7 @@ $age = $today->diff($dob)->y;
                         </div>
                         <button type="submit" class="btn btn-primary">Send Message</button>
                     </form>
-                    
+
                     <?php if ($formDisabled): ?>
                         <div class="form-success">
                             <p>Thank you for your message! I'll get back to you soon.</p>
@@ -1005,4 +1009,5 @@ $age = $today->diff($dob)->y;
 
     <script src="js/script.js"></script>
 </body>
+
 </html>
